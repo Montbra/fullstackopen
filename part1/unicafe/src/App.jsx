@@ -5,7 +5,20 @@ const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
+  let positiveWeight = 1;
+  let negativeWeight = -1;
 
+  let totalVotes = good + neutral + bad;
+  let average =
+    totalVotes !== 0
+      ? (
+          ((good * positiveWeight + bad * negativeWeight) / totalVotes) *
+          100
+        ).toFixed(2)
+      : 0;
+
+  let positivePercentage =
+    totalVotes !== 0 ? ((good / totalVotes) * 100).toFixed(2) : 0;
 
   return (
     <div>
@@ -17,6 +30,9 @@ const App = () => {
       <p>Good: {good}</p>
       <p>Neutral: {neutral}</p>
       <p>Bad: {bad}</p>
+      <p>All Votes: {totalVotes}</p>
+      <p>Average: {average}%</p>
+      <p>Positive Percentage: {positivePercentage}%</p>
     </div>
   );
 };
